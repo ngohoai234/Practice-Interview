@@ -92,6 +92,29 @@ class LinkList {
     return p2;
   }
 
+  deleteMiddleNode() {
+    // step 1 : initialize tortoise and rabbit = head
+    // step 2 : while rabbit.next is not null
+    //  step 2.1 : prevNode = tortoise and  tortoise = tortoise.next
+    //  step 2.2 : rabbit = rabbit.next.next
+    let tortoise = this.head,
+      rabbit = this.head,
+      prevNode = null;
+    if (!tortoise) {
+      return;
+    }
+    while (rabbit?.next) {
+      prevNode = tortoise;
+      tortoise = tortoise.next;
+      rabbit = rabbit.next.next;
+    }
+    if (prevNode) {
+      prevNode.next = tortoise?.next ?? null;
+    } else {
+      this.head = null;
+    }
+  }
+
   print() {
     let currentNode = this.head;
     while (currentNode) {
