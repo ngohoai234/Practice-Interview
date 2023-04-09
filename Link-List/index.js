@@ -115,8 +115,36 @@ class LinkList {
     }
   }
 
-  print() {
-    let currentNode = this.head;
+  partition(head, value) {
+    let p1 = new Node(0),
+      p1_start = p1,
+      p2 = new Node(0),
+      p2_start = p2,
+      current_node = head;
+    if (!current_node) {
+      return;
+    }
+    while (current_node) {
+      const newNode = new Node(current_node.value);
+      if (current_node.value < value) {
+        p1.next = newNode;
+        p1 = p1.next;
+      } else {
+        p2.next = newNode;
+        p2 = p2.next;
+      }
+      current_node = current_node.next;
+    }
+    if (p1_start.next) {
+      p1.next = p2_start.next;
+    } else {
+      p1_start.next = p2_start.next;
+    }
+    return p1_start.next;
+  }
+
+  print(head) {
+    let currentNode = head;
     while (currentNode) {
       console.log(currentNode.value);
       currentNode = currentNode.next;
