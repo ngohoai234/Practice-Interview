@@ -51,20 +51,29 @@ class LinkList {
 
   deleteDuplicate() {
     let currentNode = this.head;
-    if (!currentNode) {
-      return;
-    }
+    const seen = new Set();
+    let prevNode = null;
     while (currentNode) {
-      let runner = currentNode;
-      while (runner.next) {
-        if (runner.next.value === currentNode.value) {
-          runner.next = runner.next.next;
-        } else {
-          runner = runner.next;
-        }
+      if (seen.has(currentNode.value)) {
+        prevNode.next = currentNode.next;
+      } else {
+        seen.add(currentNode.value);
+        prevNode = currentNode;
       }
       currentNode = currentNode.next;
     }
+    // write no buffer temporary
+    // while (currentNode) {
+    //   let runner = currentNode;
+    //   while (runner.next) {
+    //     if (runner.next.value === currentNode.value) {
+    //       runner.next = runner.next.next;
+    //     } else {
+    //       runner = runner.next;
+    //     }
+    //   }
+    //   currentNode = currentNode.next;
+    // }
   }
 
   print() {
