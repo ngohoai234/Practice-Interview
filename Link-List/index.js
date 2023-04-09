@@ -76,6 +76,22 @@ class LinkList {
     // }
   }
 
+  getKthToLast(k) {
+    let p1 = this.head,
+      p2 = this.head;
+    for (let i = 0; i < k; i++) {
+      if (!p1) {
+        return null;
+      }
+      p1 = p1.next;
+    }
+    while (p1) {
+      p1 = p1.next;
+      p2 = p2.next;
+    }
+    return p2;
+  }
+
   print() {
     let currentNode = this.head;
     while (currentNode) {
