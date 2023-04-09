@@ -1,11 +1,19 @@
 const { LinkList } = require('./index');
 
-const list = new LinkList(1);
+const l1 = new LinkList(9);
+const l2 = new LinkList(9);
 
-console.log('Before partition');
-list.print(list.head);
+l1.add(9);
+l1.add(9);
+l1.add(9);
+l1.add(9);
+l1.add(9);
+l1.add(9);
 
-const head = list.partition(list.head, 0);
+l2.add(9);
+l2.add(9);
+l2.add(9);
 
-console.log('After partition');
-list.print(head);
+const head = LinkList.sumList(l1.head, l2.head);
+
+l1.print(head);

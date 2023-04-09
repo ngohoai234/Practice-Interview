@@ -143,6 +143,42 @@ class LinkList {
     return p1_start.next;
   }
 
+  static sumList(head_l1, head_l2) {
+    //     Sum Lists: You have two numbers represented by a linked list, where each node contains a single
+    // digit. The digits are stored in reverse order, such that the 1 's digit is at the head of the list. Write a
+    // function that adds the two numbers and returns the sum as a linked list.
+
+    let cary = 0,
+      sum = 0,
+      value = 0;
+    let newNode = new Node(0);
+    let start_node = newNode;
+    let count = 0;
+
+    while (head_l1 || head_l2) {
+      const value_l1 = head_l1?.value ?? 0;
+      const value_l2 = head_l2?.value ?? 0;
+      count++;
+      sum = value_l1 + value_l2 + cary;
+      value = sum % 10;
+      cary = sum >= 10 ? 1 : 0;
+
+      newNode.next = new Node(value);
+      newNode = newNode.next;
+
+      if (head_l1) {
+        head_l1 = head_l1.next;
+      }
+      if (head_l2) {
+        head_l2 = head_l2.next;
+      }
+    }
+    if (cary) {
+      newNode.next = new Node(1);
+    }
+    return start_node.next;
+  }
+
   print(head) {
     let currentNode = head;
     while (currentNode) {
