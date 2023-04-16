@@ -203,6 +203,25 @@ class LinkList {
     return true;
   }
 
+  interception(headA, headB) {
+    let point_a = headA;
+    let point_b = headB;
+
+    while (point_a !== point_b) {
+      if (point_a) {
+        point_a = point_a.next;
+      } else {
+        point_a = headB;
+      }
+      if (point_b) {
+        point_b = point_b.next;
+      } else {
+        point_b = headA;
+      }
+    }
+    return point_a;
+  }
+
   print(head) {
     let currentNode = head;
     while (currentNode) {
