@@ -179,6 +179,30 @@ class LinkList {
     return start_node.next;
   }
 
+  isPalindrome(head) {
+    if (!head) {
+      return false;
+    }
+    let slow = head,
+      fast = head;
+    const stack = [];
+    while (fast && fast.next) {
+      stack.push(slow.value);
+      slow = slow.next;
+      fast = fast.next.next;
+    }
+    if (fast) {
+      slow = slow.next;
+    }
+    while (slow) {
+      if (stack.pop() !== slow.value) {
+        return false;
+      }
+      slow = slow.next;
+    }
+    return true;
+  }
+
   print(head) {
     let currentNode = head;
     while (currentNode) {
