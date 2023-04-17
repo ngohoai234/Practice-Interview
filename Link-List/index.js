@@ -222,6 +222,20 @@ class LinkList {
     return point_a;
   }
 
+  reverse(head) {
+    if (!head) {
+      return null;
+    }
+    let n = null;
+    while (head) {
+      let temp = head.next;
+      head.next = n;
+      n = head;
+      head = temp;
+    }
+    return n;
+  }
+
   print(head) {
     let currentNode = head;
     while (currentNode) {
